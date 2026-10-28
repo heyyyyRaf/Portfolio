@@ -54,7 +54,7 @@ export default function Contact() {
                 <GitHubIcon />
                 <span>
                   GitHub
-                  <small>github.com/heyyyyRaf</small>
+                  <small>{profile.github.replace("https://", "")}</small>
                 </span>
               </a>
             </li>

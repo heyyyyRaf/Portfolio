@@ -12,7 +12,7 @@ export const automationSuite = {
     "filters, the details dialog and contact links. A shared fixture fails any test if the page " +
     "logs a console error.",
   // Leave null until the repository is on GitHub, then paste its URL here.
-  repoUrl: "https://github.com/heyyyyRaf/Portfolio/tree/main/automation",
+  repoUrl: "https://github.com/heyyraff/Personal-Portfolio/tree/main/automation",
   setup: [
     "cd automation",
     "python -m venv .venv",

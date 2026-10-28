@@ -11,7 +11,7 @@ export const profile = {
     "with Python, Playwright and Postman.",
   employer: "TraxionTech",
   email: "rafaelespinosa0915@gmail.com",
-  github: "https://github.com/heyyyyRaf",
+  github: "https://github.com/heyyraff",
   linkedin: "https://www.linkedin.com/in/espinosa-rafael-carbajal-5343043ab/",
 
   // Resume: put the PDF in /public (e.g. public/Rafael-Espinosa-Resume.pdf) and set the

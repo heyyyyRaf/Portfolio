@@ -8,7 +8,7 @@ def test_contact_links_point_to_real_profiles(site: Page):
 
     expect(contact.get_by_role("link", name=EMAIL)).to_have_attribute("href", f"mailto:{EMAIL}")
     expect(contact.get_by_role("link", name="GitHub")).to_have_attribute(
-        "href", "https://github.com/heyyyyRaf"
+        "href", "https://github.com/heyyraff"
     )
     expect(contact.get_by_role("link", name="LinkedIn")).to_have_attribute(
         "href", "https://www.linkedin.com/in/espinosa-rafael-carbajal-5343043ab/"
