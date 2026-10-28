@@ -9,7 +9,7 @@
     border-color 0.2s;
 }
 .navbar.is-solid {
-  background: rgba(10, 15, 31, 0.88);
+  background: var(--nav-bg);
   backdrop-filter: blur(12px);
   border-bottom-color: var(--line);
 }
@@ -41,7 +41,7 @@
   font-family: var(--font-mono);
   color: var(--cyan);
   background: var(--cyan-soft);
-  border: 1px solid rgba(34, 211, 238, 0.35);
+  border: 1px solid var(--cyan-line);
 }
 
 .nav-menu ul {
@@ -70,8 +70,29 @@
   background: var(--cyan-soft);
 }
 
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.theme-toggle {
+  width: 40px;
+  height: 40px;
+}
+
 .nav-toggle {
   display: none;
+}
+
+/* Desktop: links sit to the right, followed by the theme button. */
+@media (min-width: 901px) {
+  .nav-menu {
+    order: 1;
+    margin-left: auto;
+  }
+  .nav-actions {
+    order: 2;
+  }
 }
 
 @media (max-width: 900px) {
@@ -88,7 +109,7 @@
     /* Solid, not translucent: under the navbar's backdrop-filter the page text showed through. */
     background: var(--bg);
     border-bottom: 1px solid var(--line);
-    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 16px 32px var(--shadow);
   }
   .nav-menu.is-open {
     display: block;

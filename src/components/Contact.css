@@ -2,7 +2,7 @@
   padding: clamp(24px, 5vw, 56px);
   text-align: center;
   background:
-    radial-gradient(ellipse 70% 90% at 50% 0%, rgba(34, 211, 238, 0.1), transparent 70%),
+    radial-gradient(ellipse 70% 90% at 50% 0%, var(--cyan-soft), transparent 70%),
     var(--surface);
 }
 .contact-card .section-lead {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { profile } from "../data/profile.js";
+import ThemeToggle from "./ThemeToggle.jsx";
 import "./Navbar.css";
 
 const LINKS = [
@@ -82,16 +83,19 @@ export default function Navbar() {
           <span className="brand-name">{profile.name}</span>
         </a>
 
-        <button
-          type="button"
-          className="icon-btn nav-toggle"
-          aria-expanded={open}
-          aria-controls="main-menu"
-          aria-label={open ? "Close menu" : "Open menu"}
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
-        </button>
+        <div className="nav-actions">
+          <ThemeToggle />
+          <button
+            type="button"
+            className="icon-btn nav-toggle"
+            aria-expanded={open}
+            aria-controls="main-menu"
+            aria-label={open ? "Close menu" : "Open menu"}
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
+          </button>
+        </div>
 
         <nav aria-label="Main" id="main-menu" className={`nav-menu ${open ? "is-open" : ""}`}>
           <ul>

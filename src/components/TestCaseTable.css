@@ -48,7 +48,7 @@
   border-top: 1px solid var(--line);
 }
 .tc-row.is-open td {
-  background: rgba(34, 211, 238, 0.04);
+  background: var(--cyan-tint);
 }
 
 /* Section banner rows, like the POSITIVE / NEGATIVE SCENARIO bands in a test sheet. */
@@ -99,7 +99,7 @@
 
 .tc-details-row td {
   padding-top: 0;
-  background: rgba(34, 211, 238, 0.04);
+  background: var(--cyan-tint);
 }
 .tc-details {
   margin: 0;

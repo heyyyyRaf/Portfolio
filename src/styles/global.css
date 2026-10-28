@@ -1,5 +1,10 @@
 /* Design tokens — change colours, fonts and spacing here. */
-:root {
+
+/* Dark theme (the default). Code panels always use these colours too, so code stays on a
+   dark editor background in both themes. */
+:root,
+.hero-card,
+.code-block {
   --bg: #0a0f1f;
   --bg-raised: #0e1530;
   --surface: #121a36;
@@ -22,6 +27,55 @@
   --amber: #fbbf24;
   --amber-soft: rgba(251, 191, 36, 0.12);
 
+  --on-accent: #06202a; /* text on a solid cyan button */
+  --accent-hover: #67e8f9;
+  --tint: rgba(255, 255, 255, 0.03);
+  --cyan-line: rgba(34, 211, 238, 0.35);
+  --cyan-tint: rgba(34, 211, 238, 0.04);
+  --amber-line: rgba(251, 191, 36, 0.55);
+  --nav-bg: rgba(10, 15, 31, 0.88);
+  --shadow: rgba(0, 0, 0, 0.45);
+
+  color-scheme: dark;
+}
+
+/* Light theme: darker accents so coloured text keeps enough contrast on white. */
+:root[data-theme="light"] {
+  --bg: #f6f8fc;
+  --bg-raised: #eef2f9;
+  --surface: #ffffff;
+  --surface-hover: #f1f5fb;
+  --line: rgba(30, 41, 82, 0.13);
+  --line-strong: rgba(30, 41, 82, 0.26);
+
+  --text: #0f172a;
+  --text-soft: #334155;
+  --muted: #56627f;
+
+  --cyan: #0e7490;
+  --cyan-soft: rgba(14, 116, 144, 0.1);
+  --violet: #6d28d9;
+  --violet-soft: rgba(109, 40, 217, 0.1);
+  --green: #15803d;
+  --green-soft: rgba(21, 128, 61, 0.1);
+  --red: #be123c;
+  --red-soft: rgba(190, 18, 60, 0.09);
+  --amber: #b45309;
+  --amber-soft: rgba(180, 83, 9, 0.1);
+
+  --on-accent: #ffffff;
+  --accent-hover: #155e75;
+  --tint: rgba(15, 23, 42, 0.03);
+  --cyan-line: rgba(14, 116, 144, 0.4);
+  --cyan-tint: rgba(14, 116, 144, 0.05);
+  --amber-line: rgba(180, 83, 9, 0.55);
+  --nav-bg: rgba(246, 248, 252, 0.9);
+  --shadow: rgba(15, 23, 42, 0.12);
+
+  color-scheme: light;
+}
+
+:root {
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-display: "Space Grotesk", var(--font-sans);
   --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
@@ -31,8 +85,6 @@
   --gutter: clamp(16px, 4vw, 32px);
   --content: 1160px;
   --nav-height: 64px;
-
-  color-scheme: dark;
 }
 
 *,
@@ -218,10 +270,10 @@ pre {
 }
 .btn-primary {
   background: var(--cyan);
-  color: #06202a;
+  color: var(--on-accent);
 }
 .btn-primary:hover {
-  background: #67e8f9;
+  background: var(--accent-hover);
 }
 .btn-secondary {
   background: transparent;
@@ -284,7 +336,7 @@ pre {
   white-space: nowrap;
   border: 1px solid var(--line);
   color: var(--text-soft);
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--tint);
 }
 .tag-cyan {
   color: var(--cyan);
@@ -314,7 +366,7 @@ pre {
 /* Marks content that still needs to be confirmed by Rafael. */
 .tag-confirm {
   color: var(--amber);
-  border: 1px dashed rgba(251, 191, 36, 0.55);
+  border: 1px dashed var(--amber-line);
   background: transparent;
 }
 

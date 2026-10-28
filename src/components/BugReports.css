@@ -42,7 +42,7 @@
   transition: border-color 0.2s;
 }
 .bug-card.is-open {
-  border-color: rgba(34, 211, 238, 0.35);
+  border-color: var(--cyan-line);
 }
 
 .bug-heading {

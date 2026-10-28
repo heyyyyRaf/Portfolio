@@ -3,12 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rafael Espinosa — QA Engineer</title>
+    <title>Rafael Espinosa — QA Software Engineer</title>
     <meta
       name="description"
       content="Rafael Espinosa — QA Engineer focused on manual and automation testing: test design, defect reporting, and Python + Playwright automation."
     />
     <meta name="theme-color" content="#0a0f1f" />
+    <!-- Apply a saved light theme before the page paints, so it never flashes dark first. -->
+    <script>
+      try {
+        if (localStorage.getItem("theme") === "light") {
+          document.documentElement.dataset.theme = "light";
+          document.querySelector('meta[name="theme-color"]').setAttribute("content", "#f6f8fc");
+        }
+      } catch (e) {}
+    </script>
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

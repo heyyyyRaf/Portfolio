@@ -3,13 +3,14 @@
 import navigationTests from "../../automation/tests/test_navigation.py?raw";
 import projectTests from "../../automation/tests/test_projects.py?raw";
 import contactTests from "../../automation/tests/test_contact.py?raw";
+import themeTests from "../../automation/tests/test_theme.py?raw";
 import conftest from "../../automation/tests/conftest.py?raw";
 
 export const automationSuite = {
   title: "Portfolio self-test suite",
   description:
     "pytest + Playwright tests that check this website: navigation, the mobile menu, project " +
-    "filters, the details dialog and contact links. A shared fixture fails any test if the page " +
+    "filters, the details dialog, contact links and the theme toggle. A shared fixture fails any test if the page " +
     "logs a console error.",
   // Leave null until the repository is on GitHub, then paste its URL here.
   repoUrl: "https://github.com/heyyyyRaf/Portfolio/tree/main/automation",
@@ -46,6 +47,12 @@ export const automationSuite = {
       purpose: "Email, GitHub and LinkedIn links are correct; no dead resume download.",
       assertions: ["Exact href values", "No 'Download resume' link without a file"],
       code: contactTests,
+    },
+    {
+      name: "test_theme.py",
+      purpose: "The light/dark toggle switches the theme, remembers it after a reload, and keeps code readable.",
+      assertions: ["data-theme attribute changes", "Choice survives a reload", "Code text keeps its colour"],
+      code: themeTests,
     },
     {
       name: "conftest.py",

@@ -26,7 +26,7 @@
 .filter-btn[aria-pressed="true"] {
   background: var(--cyan);
   border-color: var(--cyan);
-  color: #06202a;
+  color: var(--on-accent);
 }
 
 .project-grid {
@@ -44,7 +44,7 @@
     transform 0.2s;
 }
 .project-card:hover {
-  border-color: rgba(34, 211, 238, 0.4);
+  border-color: var(--cyan-line);
   transform: translateY(-2px);
 }
 .project-card-top {
