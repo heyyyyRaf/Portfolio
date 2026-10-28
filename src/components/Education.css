@@ -1,0 +1,46 @@
+.education-list {
+  list-style: none;
+  display: grid;
+  gap: 16px;
+}
+.education-card {
+  display: flex;
+  gap: 18px;
+  padding: clamp(18px, 3vw, 26px);
+}
+.education-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  color: var(--violet);
+  background: var(--violet-soft);
+}
+.education-card h3 {
+  font-size: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+.education-card .placeholder {
+  font-family: var(--font-sans);
+  letter-spacing: 0;
+}
+
+.education-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 40px;
+  margin: 14px 0 0;
+}
+.education-meta dt {
+  color: var(--muted);
+  font-size: 13px;
+}
+.education-meta dd {
+  margin: 4px 0 0;
+  color: var(--text-soft);
+}

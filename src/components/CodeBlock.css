@@ -1,0 +1,39 @@
+.code-block {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #070b18;
+  overflow: hidden;
+}
+.code-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 8px 6px 16px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-raised);
+  color: var(--muted);
+  font-size: 13px;
+}
+/* Long file paths truncate so the Copy button always stays visible on phones. */
+.code-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.code-copy {
+  flex-shrink: 0;
+  min-height: 34px;
+  font-size: 13.5px;
+}
+.code-pre {
+  margin: 0;
+  padding: 16px 18px;
+  overflow-x: auto;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--text-soft);
+  tab-size: 4;
+}

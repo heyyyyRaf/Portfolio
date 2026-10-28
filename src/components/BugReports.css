@@ -1,0 +1,131 @@
+.bug-list {
+  display: grid;
+  gap: 12px;
+}
+
+.bug-card {
+  padding: 4px 6px 16px;
+  transition: border-color 0.2s;
+}
+.bug-card.is-open {
+  border-color: rgba(34, 211, 238, 0.35);
+}
+
+.bug-heading {
+  font-size: inherit;
+}
+.bug-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 14px 10px;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.bug-id {
+  flex: none;
+  color: var(--red);
+  font-size: 13.5px;
+}
+.bug-title {
+  flex: 1;
+  font-family: var(--font-display);
+  font-size: 17.5px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+.bug-toggle:hover .bug-title {
+  color: var(--cyan);
+}
+.bug-chevron {
+  flex: none;
+  color: var(--muted);
+  transition: transform 0.2s;
+}
+.bug-card.is-open .bug-chevron {
+  transform: rotate(180deg);
+}
+
+.bug-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0 14px;
+}
+
+.bug-details {
+  margin: 16px 14px 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+.bug-details dl {
+  margin: 0;
+  display: grid;
+  gap: 16px;
+}
+.bug-details dl + dl {
+  margin-top: 16px;
+}
+.bug-details dl:empty {
+  display: none;
+}
+.bug-details dt {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.bug-details dd {
+  margin: 6px 0 0;
+  color: var(--text-soft);
+}
+.bug-details ul,
+.bug-details ol {
+  padding-left: 20px;
+  display: grid;
+  gap: 4px;
+}
+
+.bug-compare {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.bug-compare > div {
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+}
+.bug-expected {
+  background: var(--green-soft);
+}
+.bug-expected dt {
+  color: var(--green);
+}
+.bug-actual {
+  background: var(--red-soft);
+}
+.bug-actual dt {
+  color: var(--red);
+}
+
+@media (max-width: 640px) {
+  .bug-toggle {
+    flex-wrap: wrap;
+    gap: 6px 12px;
+  }
+  .bug-title {
+    order: 3;
+    flex-basis: 100%;
+  }
+  .bug-chevron {
+    margin-left: auto;
+  }
+  .bug-compare {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

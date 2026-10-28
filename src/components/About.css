@@ -1,0 +1,45 @@
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 56px);
+  align-items: start;
+}
+
+.about-text {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  color: var(--text-soft);
+  font-size: 17px;
+}
+
+.about-focus {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+.about-focus li {
+  display: flex;
+  gap: 14px;
+  padding: 16px 18px;
+}
+.about-focus svg {
+  flex: none;
+  margin-top: 2px;
+  color: var(--cyan);
+}
+.about-focus h3 {
+  font-size: 16px;
+  font-weight: 600;
+}
+.about-focus p {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 14.5px;
+}
+
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
