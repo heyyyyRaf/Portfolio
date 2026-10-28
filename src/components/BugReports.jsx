@@ -8,8 +8,8 @@ export default function BugReports() {
     <Section
       id="bug-reports"
       eyebrow="bug reports"
-      title="How I write a bug report"
-      lead="Sample reports on two fictional apps (no real company or customer data). Open one to see the full report a developer would receive."
+      title="How I write a ticket report"
+      lead="Sample bug and enhancement tickets on fictional apps (no real company or customer data). Open one to see the full ticket a developer would receive."
     >
       <figure className="card bug-format">
         <figcaption>Every title follows the same format, so a ticket can be triaged from the list view:</figcaption>

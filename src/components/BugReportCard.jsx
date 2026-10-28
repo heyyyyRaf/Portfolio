@@ -1,6 +1,6 @@
 import { useId, useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { bugPrefix } from "../data/bugs.js";
+import { ticketPrefix } from "../data/bugs.js";
 
 const SEVERITY_TAG = { Critical: "tag-red", Major: "tag-amber", Minor: "tag-cyan" };
 
@@ -13,6 +13,7 @@ function statusTag(status) {
 export default function BugReportCard({ bug }) {
   const [open, setOpen] = useState(false);
   const panelId = useId();
+  const isEnhancement = bug.type === "ENHANCEMENT";
 
   return (
     <article className={`card bug-card ${open ? "is-open" : ""}`} aria-labelledby={`${panelId}-title`}>
@@ -24,22 +25,26 @@ export default function BugReportCard({ bug }) {
           aria-controls={panelId}
           onClick={() => setOpen((v) => !v)}
         >
-          <span className="bug-id mono">{bug.id}</span>
+          <span className={`bug-id mono ${isEnhancement ? "is-enhancement" : ""}`}>{bug.id}</span>
           <span className="bug-title">
-            <span className="bug-prefix mono">{bugPrefix(bug)}</span> {bug.title}
+            <span className="bug-prefix mono">{ticketPrefix(bug)}</span> {bug.title}
           </span>
           <ChevronDown className="bug-chevron" size={20} aria-hidden="true" />
         </button>
       </h3>
 
       <div className="bug-tags">
-        <span className={`tag ${SEVERITY_TAG[bug.severity]}`}>Severity: {bug.severity}</span>
+        {bug.severity && <span className={`tag ${SEVERITY_TAG[bug.severity]}`}>Severity: {bug.severity}</span>}
         <span className="tag">Priority: {bug.priority}</span>
         <span className={`tag ${statusTag(bug.status)}`}>{bug.status}</span>
       </div>
 
       <div id={panelId} className="bug-details" hidden={!open}>
         <dl>
+          <div>
+            <dt>Description</dt>
+            <dd>{bug.description}</dd>
+          </div>
           <div>
             <dt>Environment</dt>
             <dd>{bug.environment}</dd>
@@ -66,16 +71,20 @@ export default function BugReportCard({ bug }) {
           </div>
         </dl>
         <dl className="bug-compare">
-          <div className="bug-expected">
-            <dt>Expected result</dt>
-            <dd>{bug.expected}</dd>
-          </div>
           <div className="bug-actual">
             <dt>Actual result</dt>
             <dd>{bug.actual}</dd>
           </div>
+          <div className="bug-expected">
+            <dt>Expected result</dt>
+            <dd>{bug.expected}</dd>
+          </div>
         </dl>
         <dl>
+          <div>
+            <dt>Impact</dt>
+            <dd>{bug.impact}</dd>
+          </div>
           {bug.notes && (
             <div>
               <dt>Notes</dt>

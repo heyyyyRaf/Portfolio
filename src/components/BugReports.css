@@ -65,6 +65,9 @@
   color: var(--red);
   font-size: 13.5px;
 }
+.bug-id.is-enhancement {
+  color: var(--violet);
+}
 .bug-title {
   flex: 1;
   font-family: var(--font-display);
