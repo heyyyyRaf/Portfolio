@@ -10,14 +10,16 @@ export default function ProjectGrid() {
   const [category, setCategory] = useState("all");
   const [selected, setSelected] = useState(null);
 
-  const visible = category === "all" ? projects : projects.filter((p) => p.category === category);
+  // `category` is a single id or a list, for projects that span several areas.
+  const visible =
+    category === "all" ? projects : projects.filter((p) => [].concat(p.category).includes(category));
 
   return (
     <Section
       id="projects"
       eyebrow="projects"
       title="Featured projects"
-      lead="Each card says what it is: a practice project I built, or a demonstration on fictional data, so nothing confidential from real clients is shown."
+      lead="Each card says what it is: real work (described in general terms to keep it confidential), a practice project, or a demonstration on fictional data."
     >
       <div className="project-filters" role="group" aria-label="Filter projects by category">
         {CATEGORIES.map((c) => (

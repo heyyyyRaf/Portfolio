@@ -11,16 +11,25 @@ def test_filter_shows_only_matching_projects(site: Page):
 
     expect(filter_button(site, "Automation")).to_have_attribute("aria-pressed", "true")
     cards = site.locator("#projects").get_by_role("article")
-    expect(cards).to_have_count(1)
-    expect(cards.first).to_contain_text("Python + Playwright")
+    expect(cards).to_have_count(2)
+    expect(cards.filter(has_text="Python + Playwright")).to_have_count(1)
+    # Negative: projects outside the category must be hidden.
+    expect(cards.filter(has_text="Fundraising Platform")).to_have_count(0)
+
+
+def test_project_in_several_categories_shows_under_each(site: Page):
+    for label in ("Mobile", "Web", "Automation"):
+        filter_button(site, label).click()
+        cards = site.locator("#projects").get_by_role("article")
+        expect(cards.filter(has_text="Financial Services Platform")).to_have_count(1)
 
 
 def test_all_filter_restores_every_project(site: Page):
     filter_button(site, "Mobile").click()
-    expect(site.locator("#projects").get_by_role("article")).to_have_count(1)
+    expect(site.locator("#projects").get_by_role("article")).to_have_count(2)
 
     filter_button(site, "All").click()
-    expect(site.locator("#projects").get_by_role("article")).to_have_count(5)
+    expect(site.locator("#projects").get_by_role("article")).to_have_count(7)
 
 
 def test_project_details_open_and_close_with_escape(site: Page):

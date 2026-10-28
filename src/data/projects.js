@@ -2,6 +2,7 @@
 //   "real"     → work you can show (only with permission; sanitize everything)
 //   "practice" → your own practice project
 //   "demo"     → a demonstration built on fictional data
+// `category` is one filter id, or a list of ids for a project that spans several areas.
 // Leave `repoUrl` as null until the repository exists — the button is hidden while it's null.
 // Screenshots: put images in public/projects/ and list them as
 //   { src: "projects/file.png", alt: "What the screenshot shows" }
@@ -24,6 +25,51 @@ export const KIND_LABELS = {
 export const KIND_TAGS = { real: "tag-green", practice: "tag-violet", demo: "tag-amber" };
 
 export const projects = [
+  // Real work at TraxionTech. Product names, screenshots and data stay confidential, so these
+  // cards describe the type of product and my role only.
+  {
+    id: "financial-platform",
+    title: "Financial Services Platform (Mobile & Web)",
+    category: ["mobile", "web", "automation"],
+    kind: "real",
+    icon: "Wallet",
+    summary:
+      "QA for financial products with a customer mobile app and a web back-office used by operations staff. " +
+      "Product names and data are kept confidential.",
+    scope: [
+      "Customer mobile app: account and transaction flows",
+      "Web back-office: account management, verification review and approvals",
+      "APIs behind the mobile and web apps",
+    ],
+    scenarios: [
+      "Positive and negative scenarios written from business requirements",
+      "Approval, status and security flows",
+      "Regression and functional testing to validate bug fixes",
+    ],
+    role:
+      "QA Software Engineer (started as QA intern). I write and execute test cases, report bugs and " +
+      "enhancements, build UI test automation with Python and Playwright, and automate API tests with Postman.",
+    tools: ["Python", "Playwright", "Postman", "Excel"],
+    screenshots: [],
+    repoUrl: null,
+    link: { label: "See how I write tickets", href: "#bug-reports" },
+  },
+  {
+    id: "fundraising-platform",
+    title: "Fundraising Platform",
+    category: "web",
+    kind: "real",
+    icon: "HandHeart",
+    summary:
+      "QA for an online fundraising platform. Product names and data are kept confidential.",
+    scope: ["Functional testing of the main user flows", "Regression testing before releases"],
+    scenarios: ["Positive and negative scenarios written from business requirements"],
+    role: "Wrote and executed test cases, and reported and retested defects.",
+    tools: ["Excel"],
+    screenshots: [],
+    repoUrl: null,
+    link: { label: "See how I write test cases", href: "#test-cases" },
+  },
   {
     id: "web-testing",
     title: "Web Application Testing",
