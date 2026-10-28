@@ -3,15 +3,15 @@
 export const profile = {
   name: "Rafael Espinosa",
   firstName: "Rafael",
-  title: "QA Engineer | Manual & Automation Testing",
+  title: "QA Software Engineer | Manual & Automation Testing",
   headline: "Breaking bugs. Building quality.",
   intro:
-    "I'm a QA Engineer who tests web and mobile applications — writing clear test cases, " +
+    "I'm a QA Software Engineer who tests web and mobile applications — writing clear test cases, " +
     "chasing down defects until they can be reproduced, and automating UI and API tests " +
     "with Python, Playwright and Postman.",
   employer: "TraxionTech",
   email: "rafaelespinosa0915@gmail.com",
-  github: "https://github.com/heyyyyRaf",
+  github: "https://github.com/heyyraff",
   linkedin: "https://www.linkedin.com/in/espinosa-rafael-carbajal-5343043ab/",
 
   // Resume: put the PDF in /public (e.g. public/Rafael-Espinosa-Resume.pdf) and set the
