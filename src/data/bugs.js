@@ -2,13 +2,32 @@
 //   "ShopLite" — a demo online store (web)
 //   "PayGo"    — a demo mobile wallet (Android/iOS)
 // No real company, customer or system data. Replace with sanitized real reports if approved.
+//
+// Titles follow my reporting convention:
+//   [Test stage][BUG][Platform][Product][Module - Submodule] Title In Title Case
+// The bracketed prefix is built from `stage`, `platform`, `product` and `module`.
+
+export const TITLE_FORMAT = [
+  { part: "SIT", meaning: "Test stage — SIT or UAT" },
+  { part: "BUG", meaning: "Ticket type" },
+  { part: "WEB", meaning: "Platform — WEB or MOBILE" },
+  { part: "Product", meaning: "Application under test" },
+  { part: "Module - Submodule", meaning: "Where the defect lives" },
+];
+
+export function bugPrefix(bug) {
+  return `[${bug.stage}][BUG][${bug.platform}][${bug.product}][${bug.module}]`;
+}
 
 export const bugReports = [
   {
     id: "BUG-101",
-    title: "Checkout accepts an expired card and shows a success page",
-    app: "ShopLite (web)",
-    environment: "Staging · Chrome (desktop) · Windows 11",
+    stage: "SIT",
+    platform: "WEB",
+    product: "ShopLite Storefront",
+    module: "Checkout - Payment",
+    title: "Expired Card Is Accepted and an Order Confirmation Is Shown",
+    environment: "SIT · Chrome (desktop) · Windows 11",
     severity: "Critical",
     priority: "P1",
     status: "Fixed — verified",
@@ -29,9 +48,12 @@ export const bugReports = [
   },
   {
     id: "BUG-102",
-    title: "Transfer amount field allows more than two decimal places",
-    app: "PayGo (mobile)",
-    environment: "QA build · Android 14 · Pixel 7 emulator",
+    stage: "SIT",
+    platform: "MOBILE",
+    product: "PayGo Wallet",
+    module: "Send Money - Amount Entry",
+    title: "Amount Field Accepts More Than Two Decimal Places",
+    environment: "SIT build · Android 14 · Pixel 7 emulator",
     severity: "Major",
     priority: "P2",
     status: "Open",
@@ -47,9 +69,12 @@ export const bugReports = [
   },
   {
     id: "BUG-103",
-    title: "Sign-up button overlaps the terms link on small screens",
-    app: "ShopLite (web)",
-    environment: "Staging · Safari · iPhone SE viewport (375 × 667)",
+    stage: "UAT",
+    platform: "WEB",
+    product: "ShopLite Storefront",
+    module: "Account - Sign Up",
+    title: "Create Account Button Overlaps the Terms Link on Small Screens",
+    environment: "UAT · Safari · iPhone SE viewport (375 × 667)",
     severity: "Minor",
     priority: "P3",
     status: "Fixed — verified",
@@ -62,9 +87,12 @@ export const bugReports = [
   },
   {
     id: "BUG-104",
-    title: "Session stays active after password change on another device",
-    app: "PayGo (mobile)",
-    environment: "QA build · iOS 18 · iPhone 15 simulator + web portal",
+    stage: "SIT",
+    platform: "MOBILE",
+    product: "PayGo Wallet",
+    module: "Security - Sessions",
+    title: "Session Stays Active After the Password Is Changed on Another Device",
+    environment: "SIT build · iOS 18 · iPhone 15 simulator + web portal",
     severity: "Major",
     priority: "P2",
     status: "In progress",

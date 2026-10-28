@@ -51,6 +51,26 @@
   background: rgba(34, 211, 238, 0.04);
 }
 
+/* Section banner rows, like the POSITIVE / NEGATIVE SCENARIO bands in a test sheet. */
+.tc-group th {
+  padding: 10px 14px;
+  border-top: 1px solid var(--line);
+  color: var(--cyan);
+  background: var(--cyan-soft);
+  letter-spacing: 0.08em;
+}
+.tc-group-negative th {
+  color: var(--red);
+  background: var(--red-soft);
+}
+.tc-group + .tc-row td {
+  border-top: 0;
+}
+.tc-date {
+  white-space: nowrap;
+  font-size: 13.5px;
+}
+
 .tc-id {
   white-space: nowrap;
   color: var(--cyan);
@@ -131,6 +151,15 @@
   }
   .tc-table tr[hidden] {
     display: none;
+  }
+  .tc-group th {
+    display: block;
+    margin-top: 20px;
+    border: 0;
+    border-radius: var(--radius-sm);
+  }
+  .tc-table tbody:first-of-type .tc-group th {
+    margin-top: 0;
   }
   .tc-row {
     margin-top: 12px;

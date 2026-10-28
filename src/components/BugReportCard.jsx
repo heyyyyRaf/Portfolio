@@ -1,5 +1,6 @@
 import { useId, useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { bugPrefix } from "../data/bugs.js";
 
 const SEVERITY_TAG = { Critical: "tag-red", Major: "tag-amber", Minor: "tag-cyan" };
 
@@ -24,7 +25,9 @@ export default function BugReportCard({ bug }) {
           onClick={() => setOpen((v) => !v)}
         >
           <span className="bug-id mono">{bug.id}</span>
-          <span className="bug-title">{bug.title}</span>
+          <span className="bug-title">
+            <span className="bug-prefix mono">{bugPrefix(bug)}</span> {bug.title}
+          </span>
           <ChevronDown className="bug-chevron" size={20} aria-hidden="true" />
         </button>
       </h3>
@@ -33,7 +36,6 @@ export default function BugReportCard({ bug }) {
         <span className={`tag ${SEVERITY_TAG[bug.severity]}`}>Severity: {bug.severity}</span>
         <span className="tag">Priority: {bug.priority}</span>
         <span className={`tag ${statusTag(bug.status)}`}>{bug.status}</span>
-        <span className="tag">{bug.app}</span>
       </div>
 
       <div id={panelId} className="bug-details" hidden={!open}>
