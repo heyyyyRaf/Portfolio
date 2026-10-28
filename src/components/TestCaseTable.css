@@ -91,7 +91,7 @@
   white-space: nowrap;
 }
 .tc-chevron {
-  transition: transform 0.2s;
+  transition: transform var(--dur-base) var(--ease);
 }
 .tc-row.is-open .tc-chevron {
   transform: rotate(180deg);
@@ -100,6 +100,9 @@
 .tc-details-row td {
   padding-top: 0;
   background: var(--cyan-tint);
+}
+.tc-details-row:not([hidden]) .tc-details {
+  animation: panel-in var(--dur-base) var(--ease);
 }
 .tc-details {
   margin: 0;

@@ -13,7 +13,7 @@
   backdrop-filter: blur(4px);
 }
 .project-dialog[open] {
-  animation: dialog-in 0.18s ease-out;
+  animation: dialog-in var(--dur-base) var(--ease);
 }
 @keyframes dialog-in {
   from {

@@ -43,8 +43,8 @@
   text-align: left;
   font-weight: 600;
   transition:
-    border-color 0.15s,
-    background-color 0.15s;
+    border-color var(--dur-fast) var(--ease),
+    background-color var(--dur-fast) var(--ease);
 }
 .contact-links a:hover {
   border-color: var(--cyan);

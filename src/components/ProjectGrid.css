@@ -15,9 +15,9 @@
   font-weight: 500;
   cursor: pointer;
   transition:
-    background-color 0.15s,
-    border-color 0.15s,
-    color 0.15s;
+    background-color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease);
 }
 .filter-btn:hover {
   border-color: var(--cyan);
@@ -40,8 +40,8 @@
   flex-direction: column;
   padding: 22px;
   transition:
-    border-color 0.2s,
-    transform 0.2s;
+    border-color var(--dur-base) var(--ease),
+    transform var(--dur-base) var(--ease);
 }
 .project-card:hover {
   border-color: var(--cyan-line);
