@@ -48,8 +48,12 @@
   display: flex;
   gap: 4px;
   margin-top: 24px;
+  /* Scrolls sideways on narrow screens only; never up and down. */
   overflow-x: auto;
-  border-bottom: 1px solid var(--line);
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  /* Inset line instead of a border, so the active tab's underline can sit on it without overflowing. */
+  box-shadow: inset 0 -1px 0 var(--line);
 }
 .auto-tab {
   flex: none;
@@ -60,7 +64,6 @@
   color: var(--muted);
   font-size: 13.5px;
   cursor: pointer;
-  margin-bottom: -1px;
 }
 .auto-tab:hover {
   color: var(--text);
