@@ -115,6 +115,9 @@
     display: block;
     animation: panel-in var(--dur-base) var(--ease);
   }
+  .nav-menu.is-closing {
+    animation: panel-out var(--dur-fast) var(--ease) forwards;
+  }
   .nav-menu ul {
     flex-direction: column;
   }

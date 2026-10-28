@@ -104,6 +104,9 @@
 .tc-details-row:not([hidden]) .tc-details {
   animation: panel-in var(--dur-base) var(--ease);
 }
+.tc-details-row.is-closing:not([hidden]) .tc-details {
+  animation: panel-out var(--dur-fast) var(--ease) forwards;
+}
 .tc-details {
   margin: 0;
   display: grid;

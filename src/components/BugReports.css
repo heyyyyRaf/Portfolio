@@ -97,6 +97,9 @@
 .bug-details:not([hidden]) {
   animation: panel-in var(--dur-base) var(--ease);
 }
+.bug-details.is-closing:not([hidden]) {
+  animation: panel-out var(--dur-fast) var(--ease) forwards;
+}
 .bug-details {
   margin: 16px 14px 0;
   padding-top: 16px;

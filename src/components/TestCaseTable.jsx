@@ -22,6 +22,8 @@ function formatDate(iso) {
 export default function TestCaseTable() {
   const [type, setType] = useState("All");
   const [expanded, setExpanded] = useState(() => new Set());
+  // Rows that are animating closed; they stay visible until their fade-out ends.
+  const [closing, setClosing] = useState(() => new Set());
 
   const rows = type === "All" ? testCases : testCases.filter((tc) => tc.scenarioType === type);
   // Positive scenarios first, then negative — the same order as my test sheets.
@@ -29,13 +31,21 @@ export default function TestCaseTable() {
     .map((name) => ({ name, cases: rows.filter((tc) => tc.scenarioType === name) }))
     .filter((group) => group.cases.length > 0);
 
+  function withItem(set, id, present) {
+    const next = new Set(set);
+    if (present) next.add(id);
+    else next.delete(id);
+    return next;
+  }
+
   function toggle(id) {
-    setExpanded((cur) => {
-      const next = new Set(cur);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
+    const isOpen = expanded.has(id);
+    setExpanded((cur) => withItem(cur, id, !isOpen));
+    setClosing((cur) => withItem(cur, id, isOpen));
+  }
+
+  function onDetailsAnimationEnd(e, id) {
+    if (e.animationName === "panel-out") setClosing((cur) => withItem(cur, id, false));
   }
 
   return (
@@ -85,6 +95,7 @@ export default function TestCaseTable() {
               </tr>
               {group.cases.map((tc) => {
                 const isOpen = expanded.has(tc.id);
+                const isClosing = closing.has(tc.id);
                 const detailsId = `tc-details-${tc.id}`;
                 return (
                   <Fragment key={tc.id}>
@@ -124,7 +135,12 @@ export default function TestCaseTable() {
                         </button>
                       </td>
                     </tr>
-                    <tr id={detailsId} className="tc-details-row" hidden={!isOpen}>
+                    <tr
+                      id={detailsId}
+                      className={`tc-details-row ${isClosing ? "is-closing" : ""}`}
+                      hidden={!isOpen && !isClosing}
+                      onAnimationEnd={(e) => onDetailsAnimationEnd(e, tc.id)}
+                    >
                       <td colSpan={COLUMNS}>
                         <dl className="tc-details">
                           <div>

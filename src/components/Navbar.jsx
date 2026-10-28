@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { profile } from "../data/profile.js";
+import { useClosable } from "../lib/useClosable.js";
 import ThemeToggle from "./ThemeToggle.jsx";
 import "./Navbar.css";
 
@@ -29,7 +30,8 @@ const SECTION_TO_LINK = {
 };
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
+  const menu = useClosable();
+  const { open } = menu;
   const [active, setActive] = useState(null);
   const [scrolled, setScrolled] = useState(false);
 
@@ -60,10 +62,11 @@ export default function Navbar() {
   useEffect(() => {
     if (!open) return;
     const onKey = (e) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") menu.close();
     };
     const onResize = () => {
-      if (window.innerWidth > 900) setOpen(false);
+      // Desktop layout shows the links inline, so there is nothing to animate.
+      if (window.innerWidth > 900) menu.closeNow();
     };
     window.addEventListener("keydown", onKey);
     window.addEventListener("resize", onResize);
@@ -74,9 +77,9 @@ export default function Navbar() {
   }, [open]);
 
   return (
-    <header className={`navbar ${scrolled || open ? "is-solid" : ""}`}>
+    <header className={`navbar ${scrolled || menu.visible ? "is-solid" : ""}`}>
       <div className="container navbar-inner">
-        <a href="#top" className="brand" onClick={() => setOpen(false)}>
+        <a href="#top" className="brand" onClick={menu.close}>
           <span className="brand-mark" aria-hidden="true">
             RE
           </span>
@@ -91,20 +94,25 @@ export default function Navbar() {
             aria-expanded={open}
             aria-controls="main-menu"
             aria-label={open ? "Close menu" : "Open menu"}
-            onClick={() => setOpen((v) => !v)}
+            onClick={menu.toggle}
           >
             {open ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
           </button>
         </div>
 
-        <nav aria-label="Main" id="main-menu" className={`nav-menu ${open ? "is-open" : ""}`}>
+        <nav
+          aria-label="Main"
+          id="main-menu"
+          className={`nav-menu ${menu.visible ? "is-open" : ""} ${menu.closing ? "is-closing" : ""}`}
+          onAnimationEnd={menu.onAnimationEnd}
+        >
           <ul>
             {LINKS.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
                   aria-current={active === link.href ? "true" : undefined}
-                  onClick={() => setOpen(false)}
+                  onClick={menu.close}
                 >
                   {link.label}
                 </a>

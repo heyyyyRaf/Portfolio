@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight, X } from "lucide-react";
 import { KIND_LABELS, KIND_TAGS } from "../data/projects.js";
 import { GitHubIcon } from "./icons.jsx";
@@ -19,9 +19,10 @@ function DetailList({ title, items }) {
 }
 
 // Uses the native <dialog>: it traps focus, closes on Escape and returns focus to the
-// button that opened it.
+// button that opened it. Closing first plays a short fade-out, then closes the dialog.
 export default function ProjectDetail({ project, onClose }) {
   const ref = useRef(null);
+  const [closing, setClosing] = useState(false);
 
   useEffect(() => {
     const dialog = ref.current;
@@ -32,20 +33,42 @@ export default function ProjectDetail({ project, onClose }) {
     };
   }, []);
 
+  function requestClose() {
+    setClosing(true);
+  }
+
+  function onAnimationEnd(e) {
+    if (e.target === ref.current && e.animationName === "dialog-out") ref.current.close();
+  }
+
+  // Escape: animate out instead of closing at once.
+  function onCancel(e) {
+    e.preventDefault();
+    requestClose();
+  }
+
   // A click on the backdrop lands on the <dialog> element itself.
   function onClick(e) {
-    if (e.target === ref.current) ref.current.close();
+    if (e.target === ref.current) requestClose();
   }
 
   return (
-    <dialog ref={ref} className="project-dialog" aria-labelledby="project-dialog-title" onClose={onClose} onClick={onClick}>
+    <dialog
+      ref={ref}
+      className={`project-dialog ${closing ? "is-closing" : ""}`}
+      aria-labelledby="project-dialog-title"
+      onClose={onClose}
+      onCancel={onCancel}
+      onClick={onClick}
+      onAnimationEnd={onAnimationEnd}
+    >
       <div className="dialog-body">
         <header className="dialog-head">
           <div>
             <span className={`tag ${KIND_TAGS[project.kind]}`}>{KIND_LABELS[project.kind]}</span>
             <h2 id="project-dialog-title">{project.title}</h2>
           </div>
-          <button type="button" className="icon-btn" aria-label="Close" onClick={() => ref.current.close()}>
+          <button type="button" className="icon-btn" aria-label="Close" onClick={requestClose}>
             <X size={20} aria-hidden="true" />
           </button>
         </header>
@@ -92,7 +115,7 @@ export default function ProjectDetail({ project, onClose }) {
 
         <footer className="dialog-actions">
           {project.link && (
-            <a className="btn btn-primary btn-sm" href={project.link.href} onClick={() => ref.current.close()}>
+            <a className="btn btn-primary btn-sm" href={project.link.href} onClick={requestClose}>
               {project.link.label} <ArrowRight size={16} aria-hidden="true" />
             </a>
           )}

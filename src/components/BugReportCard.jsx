@@ -1,6 +1,7 @@
-import { useId, useState } from "react";
+import { useId } from "react";
 import { ChevronDown } from "lucide-react";
 import { ticketPrefix } from "../data/bugs.js";
+import { useClosable } from "../lib/useClosable.js";
 
 const SEVERITY_TAG = { Critical: "tag-red", Major: "tag-amber", Minor: "tag-cyan" };
 
@@ -11,7 +12,8 @@ function statusTag(status) {
 }
 
 export default function BugReportCard({ bug }) {
-  const [open, setOpen] = useState(false);
+  const panel = useClosable();
+  const { open } = panel;
   const panelId = useId();
   const isEnhancement = bug.type === "ENHANCEMENT";
 
@@ -23,7 +25,7 @@ export default function BugReportCard({ bug }) {
           className="bug-toggle"
           aria-expanded={open}
           aria-controls={panelId}
-          onClick={() => setOpen((v) => !v)}
+          onClick={panel.toggle}
         >
           <span className={`bug-id mono ${isEnhancement ? "is-enhancement" : ""}`}>{bug.id}</span>
           <span className="bug-title">
@@ -39,7 +41,12 @@ export default function BugReportCard({ bug }) {
         <span className={`tag ${statusTag(bug.status)}`}>{bug.status}</span>
       </div>
 
-      <div id={panelId} className="bug-details" hidden={!open}>
+      <div
+        id={panelId}
+        className={`bug-details ${panel.closing ? "is-closing" : ""}`}
+        hidden={!panel.visible}
+        onAnimationEnd={panel.onAnimationEnd}
+      >
         <dl>
           <div>
             <dt>Description</dt>
