@@ -1,6 +1,7 @@
 import {
   Bug,
   ClipboardList,
+  CodeXml,
   GitBranch,
   Globe,
   HandHeart,
@@ -10,7 +11,7 @@ import {
 } from "lucide-react";
 
 // Data files name icons as strings so they stay plain data.
-const ICONS = { Bug, ClipboardList, GitBranch, Globe, HandHeart, Smartphone, Terminal, Wallet };
+const ICONS = { Bug, ClipboardList, CodeXml, GitBranch, Globe, HandHeart, Smartphone, Terminal, Wallet };
 
 export function Icon({ name, ...props }) {
   const Component = ICONS[name] ?? ClipboardList;

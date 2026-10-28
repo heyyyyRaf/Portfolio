@@ -59,6 +59,21 @@
   border-top: 1px dashed var(--line);
 }
 
+/* An odd group out at the end spans the full row, with its skills in two columns. */
+@media (min-width: 761px) {
+  .skill-panel:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+  .skill-panel:last-child:nth-child(odd) .skill-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 40px;
+  }
+  .skill-panel:last-child:nth-child(odd) .skill-list li:nth-child(2) {
+    border-top: 0;
+  }
+}
+
 @media (max-width: 760px) {
   .skills-grid {
     grid-template-columns: minmax(0, 1fr);

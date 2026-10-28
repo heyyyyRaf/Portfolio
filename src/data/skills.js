@@ -1,10 +1,12 @@
 // Skill levels are deliberately different — don't mark everything as "hands-on".
-//   hands-on  → used in real work
-//   learning  → actively practising, not yet production experience
-//   confirm   → listed but not yet confirmed; shown with a "To confirm" tag until you change it
+//   hands-on      → used in real work
+//   intermediate  → past the basics and used regularly, but not an expert
+//   learning      → actively practising, not yet production experience
+//   confirm       → listed but not yet confirmed; shown with a "To confirm" tag until you change it
 
 export const LEVELS = {
   "hands-on": { label: "Hands-on", description: "Used in real work" },
+  intermediate: { label: "Intermediate", description: "Beyond the basics, not an expert" },
   learning: { label: "Learning", description: "Actively practising" },
   confirm: { label: "To confirm", description: "Not yet confirmed" },
 };
@@ -37,7 +39,6 @@ export const skillGroups = [
     title: "Automation & API",
     icon: "Terminal",
     skills: [
-      { name: "Python", level: "hands-on" },
       { name: "Playwright", level: "hands-on" },
       { name: "API Testing", level: "hands-on" },
       { name: "Postman", level: "hands-on" },
@@ -55,6 +56,17 @@ export const skillGroups = [
       { name: "Figma", level: "hands-on" },
       { name: "Microsoft Excel", level: "hands-on" },
       { name: "Microsoft Word", level: "hands-on" },
+    ],
+  },
+  {
+    id: "languages",
+    title: "Programming & Web Languages",
+    icon: "CodeXml",
+    skills: [
+      { name: "Python", level: "intermediate" },
+      { name: "JavaScript", level: "intermediate" },
+      { name: "HTML", level: "intermediate" },
+      { name: "CSS", level: "intermediate" },
     ],
   },
 ];

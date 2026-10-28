@@ -3,7 +3,12 @@ import { Icon } from "./icons.jsx";
 import Section from "./Section.jsx";
 import "./Skills.css";
 
-const LEVEL_TAG = { "hands-on": "tag-cyan", learning: "tag-violet", confirm: "tag-confirm" };
+const LEVEL_TAG = {
+  "hands-on": "tag-cyan",
+  intermediate: "tag-green",
+  learning: "tag-violet",
+  confirm: "tag-confirm",
+};
 
 export function LevelTag({ level }) {
   return <span className={`tag ${LEVEL_TAG[level]}`}>{LEVELS[level].label}</span>;
