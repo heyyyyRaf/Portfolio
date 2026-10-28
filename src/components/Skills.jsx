@@ -5,7 +5,7 @@ import "./Skills.css";
 
 const LEVEL_TAG = {
   "hands-on": "tag-cyan",
-  intermediate: "tag-green",
+  entry: "tag-green",
   learning: "tag-violet",
   confirm: "tag-confirm",
 };
