@@ -2,12 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import { Check, Copy, Download, Mail } from "lucide-react";
 import { profile } from "../data/profile.js";
 import { resumeHref, resumeRequestHref } from "../lib/resume.js";
+import { useReveal } from "../lib/useReveal.js";
 import { GitHubIcon, LinkedInIcon } from "./icons.jsx";
 import "./Contact.css";
 
 export default function Contact() {
   const [copied, setCopied] = useState(null); // null | "ok" | "failed"
   const timer = useRef(null);
+  const [revealRef, shown] = useReveal();
 
   useEffect(() => () => clearTimeout(timer.current), []);
 
@@ -24,7 +26,7 @@ export default function Contact() {
 
   return (
     <section id="contact" className="section contact" aria-labelledby="contact-title">
-      <div className="container">
+      <div ref={revealRef} className={`container reveal ${shown ? "is-visible" : ""}`}>
         <div className="contact-card card">
           <p className="eyebrow">contact</p>
           <h2 id="contact-title" className="section-title">
