@@ -173,7 +173,7 @@ export const projects = [
     outcome: "See the Automation section for the code and how to run it.",
     tools: ["Python", "Playwright", "pytest"],
     screenshots: [],
-    repoUrl: "https://github.com/heyyraff/Personal-Portfolio/tree/main/automation",
+    repoUrl: "https://github.com/heyyyyRaf/Portfolio/tree/main/automation",
     link: { label: "View the automation code", href: "#automation" },
   },
 ];
