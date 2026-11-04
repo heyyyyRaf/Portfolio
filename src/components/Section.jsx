@@ -2,10 +2,10 @@ import { useReveal } from "../lib/useReveal.js";
 
 export default function Section({ id, eyebrow, title, lead, children, className = "" }) {
   const headingId = `${id}-title`;
-  const [revealRef, shown] = useReveal();
+  const [revealRef, revealAt] = useReveal();
   return (
     <section id={id} className={`section ${className}`} aria-labelledby={headingId}>
-      <div ref={revealRef} className={`container reveal ${shown ? "is-visible" : ""}`}>
+      <div ref={revealRef} className={`container reveal is-${revealAt}`}>
         <header className="section-head">
           {eyebrow && <p className="eyebrow">{eyebrow}</p>}
           <h2 id={headingId} className="section-title">

@@ -1,6 +1,7 @@
 import { ArrowRight, Download, Mail } from "lucide-react";
 import { profile } from "../data/profile.js";
 import { resumeHref, resumeRequestHref } from "../lib/resume.js";
+import { useTyping } from "../lib/useTyping.js";
 import { GitHubIcon, LinkedInIcon } from "./icons.jsx";
 import "./Hero.css";
 
@@ -10,7 +11,6 @@ export default function Hero() {
       <div className="container hero-grid">
         <div className="hero-copy">
           <p className="hero-role">
-            <span className="status-dot" aria-hidden="true" />
             {profile.title}
           </p>
           <h1 id="hero-title" className="hero-title">
@@ -52,28 +52,48 @@ export default function Hero() {
 
         <figure className="hero-card card" aria-label="Profile summary written as code">
           <div className="hero-card-bar" aria-hidden="true">
-            <span />
-            <span />
-            <span />
             <code>qa_engineer.py</code>
           </div>
-          <pre className="hero-code">
-            <code>
-              <span className="tk-key">class</span> <span className="tk-fn">QAEngineer</span>:{"\n"}
-              {"    "}name = <span className="tk-str">"{profile.name}"</span>{"\n"}
-              {"    "}role = <span className="tk-str">"QA Software Engineer"</span>{"\n"}
-              {"    "}company = <span className="tk-str">"{profile.employer}"</span>{"\n"}
-              {"    "}since = <span className="tk-str">"Feb 2026"</span>{"\n"}
-              {"    "}focus = [<span className="tk-str">"manual"</span>, <span className="tk-str">"automation"</span>, <span className="tk-str">"api"</span>]{"\n"}
-              {"    "}tools = [<span className="tk-str">"Python"</span>, <span className="tk-str">"Playwright"</span>, <span className="tk-str">"Postman"</span>]{"\n"}
-              {"\n"}
-              {"    "}<span className="tk-key">def</span> <span className="tk-fn">test</span>(self, feature):{"\n"}
-              {"        "}<span className="tk-key">assert</span> feature.works_as_designed(){"\n"}
-              {"        "}<span className="tk-key">assert</span> feature.handles_bad_input(){"\n"}
-            </code>
-          </pre>
+          <TypedCode />
         </figure>
       </div>
     </section>
+  );
+}
+
+// The profile card, as [text, syntax class] tokens so it can be typed out character by character.
+const CODE = [
+  ["class", "tk-key"], [" "], ["QAEngineer", "tk-fn"], [":\n    name = "], [`"${profile.name}"`, "tk-str"],
+  ["\n    role = "], ['"QA Software Engineer"', "tk-str"],
+  ["\n    focus = ["], ['"manual"', "tk-str"], [", "], ['"automation"', "tk-str"], [", "], ['"api"', "tk-str"],
+  ["]\n    tools = ["], ['"Python"', "tk-str"], [", "], ['"Playwright"', "tk-str"], [", "], ['"Postman"', "tk-str"],
+  ["]\n\n    "], ["def", "tk-key"], [" "], ["test", "tk-fn"], ["(self, feature):\n        "],
+  ["assert", "tk-key"], [" feature.works_as_designed()\n        "],
+  ["assert", "tk-key"], [" feature.handles_bad_input()"],
+];
+const CODE_TEXT = CODE.map(([text]) => text).join("");
+
+// Not-yet-typed characters are rendered transparent rather than left out, so the card keeps its
+// final size while typing and screen readers always get the whole text.
+function TypedCode() {
+  const typed = useTyping(CODE_TEXT);
+  let offset = 0;
+  let caretPlaced = false;
+  const parts = [];
+  CODE.forEach(([text, cls], i) => {
+    const cut = Math.min(Math.max(typed - offset, 0), text.length);
+    offset += text.length;
+    if (cut > 0) parts.push(<span key={`${i}t`} className={cls}>{text.slice(0, cut)}</span>);
+    if (!caretPlaced && typed < offset) {
+      parts.push(<span key="caret" className="hero-caret" aria-hidden="true" />);
+      caretPlaced = true;
+    }
+    if (cut < text.length) parts.push(<span key={`${i}r`} className={`${cls ?? ""} untyped`}>{text.slice(cut)}</span>);
+  });
+  if (!caretPlaced) parts.push(<span key="caret" className="hero-caret is-done" aria-hidden="true" />);
+  return (
+    <pre className="hero-code">
+      <code>{parts}</code>
+    </pre>
   );
 }

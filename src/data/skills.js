@@ -15,7 +15,6 @@ export const skillGroups = [
   {
     id: "manual",
     title: "Manual & Functional Testing",
-    icon: "ClipboardList",
     skills: [
       { name: "Manual Testing", level: "hands-on" },
       { name: "Functional Testing", level: "hands-on" },
@@ -28,7 +27,6 @@ export const skillGroups = [
   {
     id: "web-mobile",
     title: "Web & Mobile Testing",
-    icon: "Smartphone",
     skills: [
       { name: "Web Application Testing", level: "hands-on" },
       { name: "Mobile Application Testing", level: "hands-on" },
@@ -36,8 +34,7 @@ export const skillGroups = [
   },
   {
     id: "automation",
-    title: "Automation & API",
-    icon: "Terminal",
+    title: "UI Automation & API Testing",
     skills: [
       { name: "Playwright", level: "hands-on" },
       { name: "API Testing", level: "hands-on" },
@@ -47,7 +44,6 @@ export const skillGroups = [
   {
     id: "workflow",
     title: "Workflow & Collaboration",
-    icon: "GitBranch",
     skills: [
       { name: "Agile / Scrum", level: "hands-on" },
       { name: "SDLC / STLC", level: "hands-on" },
@@ -61,7 +57,6 @@ export const skillGroups = [
   {
     id: "languages",
     title: "Programming & Web Languages",
-    icon: "CodeXml",
     skills: [
       { name: "Python", level: "entry" },
       { name: "JavaScript", level: "entry" },

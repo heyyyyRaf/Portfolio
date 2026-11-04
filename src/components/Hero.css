@@ -21,13 +21,6 @@
   font-size: 14px;
   font-weight: 500;
 }
-.status-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--green);
-  box-shadow: 0 0 0 4px var(--green-soft);
-}
 
 .hero-title {
   margin-top: 22px;
@@ -79,14 +72,7 @@
   border-bottom: 1px solid var(--line);
   background: var(--bg-raised);
 }
-.hero-card-bar span {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--line-strong);
-}
 .hero-card-bar code {
-  margin-left: 8px;
   font-size: 12.5px;
   color: var(--muted);
 }
@@ -97,6 +83,27 @@
   line-height: 1.75;
   color: var(--text-soft);
   overflow-x: auto;
+}
+
+/* Typing effect: untyped characters keep their space but are invisible. */
+.hero-code .untyped {
+  color: transparent;
+}
+.hero-caret {
+  display: inline-block;
+  width: 0;
+  height: 1.2em;
+  margin-right: -2px;
+  border-left: 2px solid var(--cyan);
+  vertical-align: text-bottom;
+}
+.hero-caret.is-done {
+  animation: caret-blink 1s steps(1) infinite;
+}
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
 }
 
 /* Shared syntax colours (also used by CodeBlock) */

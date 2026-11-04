@@ -48,7 +48,7 @@ export const projects = [
     ],
     role:
       "QA Software Engineer (started as QA intern). I write and execute test cases, report bugs and " +
-      "enhancements, build UI test automation with Python and Playwright, and automate API tests with Postman.",
+      "enhancements, build UI test automation with Python and Playwright, and test APIs with Postman.",
     tools: ["Python", "Playwright", "Postman", "Excel"],
     screenshots: [],
     repoUrl: null,

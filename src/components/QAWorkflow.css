@@ -54,6 +54,64 @@
   font-size: 14.5px;
 }
 
+/* When the section comes into view, the steps light up one after another like a test run:
+   each step brightens with a glow, its number flashes, then the arrow to the next one appears. */
+.reveal.is-visible .workflow-step {
+  --delay: calc(0.4s + var(--i) * 0.2s);
+  animation: step-run 0.9s var(--ease) var(--delay) both;
+}
+.reveal.is-visible .workflow-num {
+  animation: num-run 0.9s var(--ease) var(--delay) both;
+}
+.reveal.is-visible .workflow-step:last-child .workflow-num {
+  animation-name: num-pass;
+}
+.reveal.is-visible .workflow-step::after {
+  animation: arrow-in 0.4s var(--ease) calc(var(--delay) + 0.25s) both;
+}
+
+@keyframes step-run {
+  0% {
+    opacity: 0.35;
+  }
+  35% {
+    opacity: 1;
+    border-color: var(--cyan);
+    box-shadow: 0 0 0 3px var(--cyan-soft);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes num-run {
+  35% {
+    color: var(--bg);
+    background: var(--cyan);
+    transform: scale(1.1);
+  }
+}
+@keyframes num-pass {
+  35% {
+    color: var(--bg);
+    background: var(--green);
+    transform: scale(1.1);
+  }
+}
+@keyframes arrow-in {
+  from {
+    opacity: 0;
+    transform: translateX(-6px) rotate(45deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal.is-visible .workflow-step,
+  .reveal.is-visible .workflow-num,
+  .reveal.is-visible .workflow-step::after {
+    animation: none;
+  }
+}
+
 @media (max-width: 980px) {
   .workflow {
     grid-template-columns: repeat(2, minmax(0, 1fr));

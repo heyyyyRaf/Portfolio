@@ -1,17 +1,16 @@
-import { Briefcase, FlaskConical } from "lucide-react";
 import { experience } from "../data/experience.js";
+import { useTimelineProgress } from "../lib/useTimelineProgress.js";
 import Section from "./Section.jsx";
 import "./Experience.css";
 
 export default function Experience() {
+  const timelineRef = useTimelineProgress();
   return (
     <Section id="experience" eyebrow="experience" title="Professional experience">
-      <ol className="timeline">
+      <ol ref={timelineRef} className="timeline">
         {experience.map((job) => (
           <li key={`${job.company}-${job.role}`} className="timeline-item">
-            <span className="timeline-marker" aria-hidden="true">
-              <Briefcase size={16} />
-            </span>
+            <span className="timeline-marker" aria-hidden="true" />
             <article className="card job-card">
               <header className="job-head">
                 <div>
@@ -34,10 +33,7 @@ export default function Experience() {
               </ul>
               {job.learning && (
                 <p className="job-learning">
-                  <FlaskConical size={16} aria-hidden="true" />
-                  <span>
-                    <strong>Learning on the side:</strong> {job.learning}
-                  </span>
+                  <strong>Learning on the side:</strong> {job.learning}
                 </p>
               )}
             </article>

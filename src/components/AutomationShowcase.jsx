@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { CircleCheck, Target } from "lucide-react";
+import { CircleCheck } from "lucide-react";
 import { automationSuite } from "../data/automation.js";
 import CodeBlock from "./CodeBlock.jsx";
 import { GitHubIcon } from "./icons.jsx";
@@ -82,7 +82,7 @@ export default function AutomationShowcase() {
           </p>
           <div className="auto-assertions">
             <span className="auto-assertions-label">
-              <Target size={15} aria-hidden="true" /> Assertions
+              Assertions
             </span>
             <ul>
               {file.assertions.map((a) => (

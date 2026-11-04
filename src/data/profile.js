@@ -7,8 +7,8 @@ export const profile = {
   headline: "Breaking bugs. Building quality.",
   intro:
     "I'm a QA Software Engineer who tests web and mobile applications — writing clear test cases, " +
-    "chasing down defects until they can be reproduced, and automating UI and API tests " +
-    "with Python, Playwright and Postman.",
+    "chasing down defects until they can be reproduced, testing APIs with Postman, and " +
+    "automating UI tests with Python and Playwright.",
   employer: "TraxionTech",
   email: "rafaelespinosa0915@gmail.com",
   github: "https://github.com/heyyraff",
@@ -31,6 +31,6 @@ export const about = [
   "When something breaks, I investigate until I can describe exactly how to reproduce it, " +
     "then write a defect report a developer can act on without a follow-up meeting. I work " +
     "closely with developers to clarify expected behaviour and to verify fixes once they land.",
-  "Alongside manual testing, I build test automation: UI tests with Python and Playwright, and " +
-    "API tests with Postman, turning repeatable checks into reliable automated regression tests.",
+  "Alongside manual testing, I test APIs with Postman and build UI test automation with " +
+    "Python and Playwright, turning repeatable checks into reliable automated regression tests.",
 ];

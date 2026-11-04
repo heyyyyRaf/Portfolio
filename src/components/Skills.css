@@ -23,24 +23,12 @@
   padding: 20px 22px 12px;
 }
 .skill-panel-head {
-  display: flex;
-  align-items: center;
-  gap: 12px;
   padding-bottom: 14px;
   border-bottom: 1px solid var(--line);
 }
 .skill-panel-head h3 {
   font-size: 17px;
   font-weight: 600;
-}
-.skill-panel-icon {
-  display: grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 9px;
-  color: var(--cyan);
-  background: var(--cyan-soft);
 }
 
 .skill-list {

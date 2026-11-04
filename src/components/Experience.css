@@ -3,15 +3,24 @@
   position: relative;
   padding-left: 44px;
 }
-.timeline::before {
+/* A faint track, with the coloured line drawn over it down to --progress as the page scrolls
+   (set by useTimelineProgress). Clipping rather than scaling keeps the gradient in place. */
+.timeline::before,
+.timeline::after {
   content: "";
   position: absolute;
   left: 15px;
   top: 8px;
   bottom: 8px;
   width: 2px;
+}
+.timeline::before {
+  background: var(--line);
+}
+.timeline::after {
   background: linear-gradient(var(--cyan), var(--violet) 70%, transparent);
-  opacity: 0.5;
+  opacity: 0.8;
+  clip-path: inset(0 0 calc((1 - var(--progress, 0)) * 100%) 0);
 }
 
 .timeline-item {
@@ -22,16 +31,32 @@
 }
 .timeline-marker {
   position: absolute;
-  left: -44px;
-  top: 20px;
-  display: grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
+  left: -35px;
+  top: 29px;
+  width: 14px;
+  height: 14px;
+  z-index: 1;
   border-radius: 50%;
-  color: var(--cyan);
   background: var(--bg);
-  border: 2px solid var(--cyan);
+  border: 2px solid var(--line);
+  transition:
+    background-color var(--dur-base) var(--ease),
+    border-color var(--dur-base) var(--ease),
+    box-shadow var(--dur-base) var(--ease),
+    transform var(--dur-base) var(--ease);
+}
+/* The dot fills in once the line reaches it. */
+.timeline-marker.is-reached {
+  background: var(--cyan);
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 4px var(--cyan-soft);
+  transform: scale(1.15);
+}
+
+@media print {
+  .timeline::after {
+    clip-path: none;
+  }
 }
 
 .job-card {
@@ -93,19 +118,12 @@
 }
 
 .job-learning {
-  display: flex;
-  gap: 10px;
   margin-top: 18px;
   padding: 12px 14px;
   border-radius: var(--radius-sm);
   background: var(--violet-soft);
   color: var(--text-soft);
   font-size: 14.5px;
-}
-.job-learning svg {
-  flex: none;
-  margin-top: 3px;
-  color: var(--violet);
 }
 .job-learning strong {
   color: var(--text);

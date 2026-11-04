@@ -8,10 +8,11 @@ export const experience = [
     period: "Jul 2026 – Present",
     current: true,
     summary:
-      "Testing web and mobile applications and building test automation for the UI and the API.",
+      "Testing web and mobile applications and APIs, and building UI test automation.",
     responsibilities: [
+      { text: "Create test cases and test scenarios based on business requirements.", confirmed: true },
       { text: "Build automated tests with Python and Playwright.", confirmed: true },
-      { text: "Automate API testing with Postman.", confirmed: true },
+      { text: "Test APIs with Postman.", confirmed: true },
       { text: "Test web and mobile applications, manually and with automation.", confirmed: true },
     ],
   },

@@ -12,7 +12,7 @@ export default function QAWorkflow() {
     >
       <ol className="workflow">
         {workflow.map((item, i) => (
-          <li key={item.step} className="workflow-step">
+          <li key={item.step} className="workflow-step" style={{ "--i": i }}>
             <span className="workflow-num mono" aria-hidden="true">
               {String(i + 1).padStart(2, "0")}
             </span>

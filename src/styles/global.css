@@ -413,7 +413,8 @@ pre {
   font-family: var(--font-mono);
 }
 
-/* Scroll reveal: each section's heading, then its content, fade up once as they come into view. */
+/* Scroll reveal: each section's heading, then its content, fade in every time they come into
+   view — up when scrolling down, down when scrolling back up. */
 .reveal > * {
   opacity: 0;
   transform: translateY(18px);
@@ -427,13 +428,21 @@ pre {
 .reveal > :nth-child(n + 3) {
   transition-delay: 0.16s;
 }
+.reveal.is-above > * {
+  transform: translateY(-18px);
+}
+/* Hiding happens off screen, so it is instant; only coming into view animates. */
+.reveal:not(.is-visible) > * {
+  transition: none;
+}
 .reveal.is-visible > * {
   opacity: 1;
   transform: none;
 }
 
 @media print {
-  .reveal > * {
+  .reveal > *,
+  .reveal.is-above > * {
     opacity: 1;
     transform: none;
   }
@@ -444,7 +453,8 @@ pre {
     scroll-behavior: auto;
   }
   /* No movement at all: content is simply there. */
-  .reveal > * {
+  .reveal > *,
+  .reveal.is-above > * {
     opacity: 1;
     transform: none;
     transition: none;

@@ -1,5 +1,4 @@
 import { LEVELS, skillGroups } from "../data/skills.js";
-import { Icon } from "./icons.jsx";
 import Section from "./Section.jsx";
 import "./Skills.css";
 
@@ -37,9 +36,6 @@ export default function Skills() {
         {skillGroups.map((group) => (
           <article key={group.id} className="card skill-panel" aria-labelledby={`skills-${group.id}`}>
             <header className="skill-panel-head">
-              <span className="skill-panel-icon">
-                <Icon name={group.icon} size={18} />
-              </span>
               <h3 id={`skills-${group.id}`}>{group.title}</h3>
             </header>
             <ul className="skill-list">

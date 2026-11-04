@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { CATEGORIES, KIND_LABELS, KIND_TAGS, projects } from "../data/projects.js";
-import { Icon } from "./icons.jsx";
 import ProjectDetail from "./ProjectDetail.jsx";
 import Section from "./Section.jsx";
 import "./ProjectGrid.css";
@@ -43,9 +42,6 @@ export default function ProjectGrid() {
         {visible.map((project) => (
           <article key={project.id} className="card project-card" aria-labelledby={`project-${project.id}`}>
             <div className="project-card-top">
-              <span className="project-icon">
-                <Icon name={project.icon} size={20} />
-              </span>
               <span className={`tag ${KIND_TAGS[project.kind]}`}>{KIND_LABELS[project.kind]}</span>
             </div>
             <h3 id={`project-${project.id}`}>{project.title}</h3>
