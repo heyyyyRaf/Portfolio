@@ -1,13 +1,75 @@
 import { useRef, useState } from "react";
-import { CircleCheck } from "lucide-react";
+import { CircleCheck, Play } from "lucide-react";
 import { automationSuite } from "../data/automation.js";
 import CodeBlock from "./CodeBlock.jsx";
 import { GitHubIcon } from "./icons.jsx";
 import Section from "./Section.jsx";
 import "./AutomationShowcase.css";
 
+// Real recordings of the browser while the tests drive it, for viewers who don't read code.
+function RecordingPlayer({ recordings }) {
+  const [current, setCurrent] = useState(0);
+  const [picked, setPicked] = useState(false);
+  const rec = recordings[current];
+
+  function choose(i) {
+    setCurrent(i);
+    setPicked(true);
+  }
+
+  return (
+    <div className="auto-watch card">
+      <div className="auto-watch-head">
+        <h3>Watch the tests run</h3>
+        <p>
+          Real screen recordings: no one is touching the mouse. The test script clicks, types and checks the
+          page by itself, then marks the scenario as passed. Slowed down so you can follow each step.
+        </p>
+      </div>
+      <div className="auto-watch-body">
+        <figure className="auto-video">
+          <video
+            key={rec.src}
+            src={rec.src}
+            controls
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            autoPlay={picked}
+            aria-label={`Recording of the test: ${rec.title}`}
+          />
+          <figcaption>
+            <span className="auto-pass">
+              <CircleCheck size={15} aria-hidden="true" /> Passed
+            </span>
+            <strong>{rec.title}</strong>
+            <span>{rec.checks}</span>
+            <span className="auto-video-file mono">automation/tests/{rec.file}</span>
+          </figcaption>
+        </figure>
+        <ol className="auto-scenarios" aria-label="Recorded scenarios">
+          {recordings.map((r, i) => (
+            <li key={r.src}>
+              <button
+                type="button"
+                className="auto-scenario"
+                aria-current={i === current ? "true" : undefined}
+                onClick={() => choose(i)}
+              >
+                <Play size={14} aria-hidden="true" />
+                <span>{r.title}</span>
+              </button>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  );
+}
+
 export default function AutomationShowcase() {
-  const { files, lastRun, repoUrl } = automationSuite;
+  const { files, lastRun, repoUrl, recordings } = automationSuite;
   const [current, setCurrent] = useState(0);
   const tabRefs = useRef([]);
   const file = files[current];
@@ -54,6 +116,8 @@ export default function AutomationShowcase() {
           </span>
         </div>
       )}
+
+      {recordings?.length > 0 && <RecordingPlayer recordings={recordings} />}
 
       <div className="auto-tabs" role="tablist" aria-label="Test files">
         {files.map((f, i) => (
